@@ -1,0 +1,11 @@
+endpoints:
+  health:
+    sensitive: true
+  liquibase:
+    enabled: true
+    
+
+#TODO: To remove
+server:
+  port: 9000
+
