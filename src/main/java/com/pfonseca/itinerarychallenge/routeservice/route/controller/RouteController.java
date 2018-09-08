@@ -15,6 +15,8 @@ import com.pfonseca.itinerarychallenge.routeservice.route.service.strategy.Conne
 import com.pfonseca.itinerarychallenge.routeservice.route.service.strategy.SortStrategy;
 import com.pfonseca.itinerarychallenge.routeservice.route.service.strategy.TimeSortStrategy;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/routes")
 public class RouteController {
@@ -23,16 +25,18 @@ public class RouteController {
 	private RouteService routeService;
 	
 	@GetMapping("/less-time")
-	public Route list(@Valid RouteFilter filter){
-		return extracted(filter, new TimeSortStrategy());
+	@ApiOperation(value="Find a route based in the less time")
+	public Route lessTime(@Valid RouteFilter filter){
+		return findRoute(filter, new TimeSortStrategy());
 	}
 	
 	@GetMapping("/less-connections")
-	public Route liste(@Valid RouteFilter filter){
-		return extracted(filter, new ConnectionSortStrategy());
+	@ApiOperation(value="Find a route based in the less number of connections")
+	public Route lessConnections(@Valid RouteFilter filter){
+		return findRoute(filter, new ConnectionSortStrategy());
 	}
 	
-	private Route extracted(RouteFilter filter, SortStrategy strategy) {
+	private Route findRoute(RouteFilter filter, SortStrategy strategy) {
 		Route route = routeService.searchRoute(filter, strategy);
 		
 		if(route == null) {

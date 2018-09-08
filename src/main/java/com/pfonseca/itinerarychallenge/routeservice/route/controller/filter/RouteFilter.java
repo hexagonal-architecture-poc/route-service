@@ -2,6 +2,9 @@ package com.pfonseca.itinerarychallenge.routeservice.route.controller.filter;
 
 import javax.validation.constraints.NotNull;
 
+import io.swagger.annotations.ApiModel;
+
+@ApiModel(description = "City model")
 public class RouteFilter {
 
 	@NotNull

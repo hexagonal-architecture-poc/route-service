@@ -2,12 +2,25 @@ package com.pfonseca.itinerarychallenge.routeservice.client.itinerary.domain;
 
 import java.time.LocalTime;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description = "Itinerary between two cities")
 public class Itinerary {
 
+	@ApiModelProperty(notes = "The database generated itinerary ID")
 	private Long id;
+	
+	@ApiModelProperty(notes = "Origin city", required=true)
 	private City origin;
+	
+	@ApiModelProperty(notes = "Destiny city", required=true)
 	private City destiny;
+	
+	@ApiModelProperty(notes = "Departure time. Format: \"HH:mm:ss\"", required=true)
 	private LocalTime departureTime;
+	
+	@ApiModelProperty(notes = "Arrival time. Format: \"HH:mm:ss\"", required=true)
 	private LocalTime arrivalTime;
 	
 	

@@ -1,8 +1,15 @@
 package com.pfonseca.itinerarychallenge.routeservice.client.itinerary.domain;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description = "City model")
 public class City {
 	
+	@ApiModelProperty(notes = "The database generated city ID")
 	private Long id;
+	
+	@ApiModelProperty(notes = "City name", required=true, allowEmptyValue=false, dataType="String(255)")
 	private String name;
 	
 	public City() {}

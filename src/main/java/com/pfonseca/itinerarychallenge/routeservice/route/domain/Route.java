@@ -10,11 +10,19 @@ import org.apache.commons.collections4.CollectionUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pfonseca.itinerarychallenge.routeservice.client.itinerary.domain.Itinerary;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description = "Route based on a list of itineraries")
 public class Route {
 
+	@ApiModelProperty(notes = "Origin city id")
 	private Long originId;
+	
+	@ApiModelProperty(notes = "Origin city id")
 	private Long destinyId;
 	
+	@ApiModelProperty(notes = "Itinerary list", required=true)
 	private List<Itinerary> itineraries = new ArrayList<>();
 	
 	private boolean invalid=false;
@@ -48,6 +56,7 @@ public class Route {
 		return itineraries;
 	}
 
+	@ApiModelProperty(notes = "Time (in minutes) from origin city to destiny city")
 	public Long getTotalTime() {
 		
 		if(CollectionUtils.isNotEmpty(this.itineraries)) {
