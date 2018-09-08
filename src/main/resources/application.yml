@@ -4,10 +4,9 @@ endpoints:
   liquibase:
     enabled: true
     
-
-#TODO: To remove
 server:
   port: 8081
 
 
-itinerary.url: http://localhost:8080
+itinerary:
+  url: http://localhost:8080
