@@ -7,5 +7,7 @@ endpoints:
 
 #TODO: To remove
 server:
-  port: 9000
+  port: 8081
 
+
+itinerary.url: http://localhost:8080
