@@ -26,6 +26,33 @@ To run the application on standalone, execute the following command:
 
 To run the application with docker-compose or kubernetes access this [documentation](https://gitlab.com/itinerary-challenge/devops).
 
+## Default data
+
+When the application starts for the first time, liquibase inserts some test data.
+
+### Cities
+
+| ID     | Name          | 
+| :------|:--------------| 
+| 1      | Zaragoza      |
+| 2      | Barcelona     |   
+| 3      | Madri         |    
+| 4      | Granada       |    
+
+### Itineraries
+
+| ID     | origin_id | destiny_id | departure_time | arrival_time |
+| :------|:----------|:-----------|:---------------|:-------------| 
+| 1      | 1         | 2          | 10:10:00       | 11:15:00     |
+| 2      | 1         | 2          | 15:10:00       | 15:45:00     |
+| 3      | 1         | 3          | 15:05:00       | 22:00:00     |
+| 4      | 2         | 4          | 18:09:00       | 20:10:00     |
+| 5      | 2         | 1          | 12:10:00       | 14:30:00     |
+| 6      | 3         | 2          | 16:10:00       | 17:04:00     |
+| 7      | 1         | 4          | 22:10:00       | 23:14:00     |
+| 8      | 4         | 2          | 06:10:00       | 08:34:00     |
+| 9      | 4         | 3          | 23:20:00       | 23:50:00     |
+
 
 
 ## How to use
@@ -97,34 +124,6 @@ To access the standalone access:
 
 
 The api documentation (Swagger): [http://localhost:8081/swagger-ui.html](http://localhost:8081/swagger-ui.html)
-
-
-
-## Default data
-
-### Cities
-
-| ID     | Name          | 
-| :------|:--------------| 
-| 1      | Zaragoza      |
-| 2      | Barcelona     |   
-| 3      | Madri         |    
-| 4      | Granada       |    
-
-### Itineraries
-
-| ID     | origin_id | destiny_id | departure_time | arrival_time |
-| :------|:----------|:-----------|:---------------|:-------------| 
-| 1      | 1         | 2          | 10:10:00       | 11:15:00     |
-| 2      | 1         | 2          | 15:10:00       | 15:45:00     |
-| 3      | 1         | 3          | 15:05:00       | 22:00:00     |
-| 4      | 2         | 4          | 18:09:00       | 20:10:00     |
-| 5      | 2         | 1          | 12:10:00       | 14:30:00     |
-| 6      | 3         | 2          | 16:10:00       | 17:04:00     |
-| 7      | 1         | 4          | 22:10:00       | 23:14:00     |
-| 8      | 4         | 2          | 06:10:00       | 08:34:00     |
-| 9      | 4         | 3          | 23:20:00       | 23:50:00     |
-
 
 
 ## Frameworks
