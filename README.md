@@ -6,14 +6,14 @@ This microservice is responsible for creating routes based on an origin city and
 
 [Docker Registry](https://gitlab.com/itinerary-challenge/route-service/container_registry)
 
---- 
+
 ## How to build 
 
 This project was created with maven. To build the project execute the following command:
 
 	$ mvn clean install
 
----
+
 
 ## How to run 
 
@@ -26,7 +26,7 @@ To run the application on standalone, execute the following command:
 
 To run the application with docker-compose or kubernetes access this [documentation](https://gitlab.com/itinerary-challenge/devops).
 
----
+
 
 ## How to use
 
@@ -99,7 +99,7 @@ To access the standalone access:
 The api documentation (Swagger): [http://localhost:8081/swagger-ui.html](http://localhost:8081/swagger-ui.html)
 
 
----
+
 ## Default data
 
 ### Cities
@@ -125,7 +125,7 @@ The api documentation (Swagger): [http://localhost:8081/swagger-ui.html](http://
 | 8      | 4         | 2          | 06:10:00       | 08:34:00     |
 | 9      | 4         | 3          | 23:20:00       | 23:50:00     |
 
----
+
 
 ## Frameworks
 
