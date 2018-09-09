@@ -29,8 +29,8 @@ public class RouteController {
 	@GetMapping("/less-time")
 	@ApiOperation(value="Find a route based in the less time")
 	@ApiImplicitParams({
-	    @ApiImplicitParam(name = "destiny", value = "Destiny city id", required = true, dataType = "long", paramType = "destiny"),
-	    @ApiImplicitParam(name = "origin", value = "Origin city id", required = true, dataType = "long", paramType = "origin")
+	    @ApiImplicitParam(name = "origin", value = "Origin city id", required = true ),
+	    @ApiImplicitParam(name = "destiny", value = "Destiny city id", required = true)
 	})
 	public Route lessTime(@Valid RouteFilter filter){
 		return findRoute(filter, new TimeSortStrategy());
@@ -39,8 +39,8 @@ public class RouteController {
 	@GetMapping("/less-connections")
 	@ApiOperation(value="Find a route based in the less number of connections")
 	@ApiImplicitParams({
-	    @ApiImplicitParam(name = "destiny", value = "Destiny city id", required = true, dataType = "long", paramType = "destiny"),
-	    @ApiImplicitParam(name = "origin", value = "Origin city id", required = true, dataType = "long", paramType = "origin")
+	    @ApiImplicitParam(name = "origin", value = "Origin city id", required = true),
+	    @ApiImplicitParam(name = "destiny", value = "Destiny city id", required = true)
 	})
 	public Route lessConnections(@Valid RouteFilter filter){
 		return findRoute(filter, new ConnectionSortStrategy());
