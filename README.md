@@ -57,7 +57,8 @@ When the application starts for the first time, liquibase inserts some test data
 
 ## How to use
 
-To access the standalone access: 
+To access the standalone access:
+
 - Less time between city 1 and city 3: [http://localhost:8081/routes/less-time?origin=1&destiny=3](http://localhost:8081/routes/less-time?origin=1&destiny=3)
 
     ```json
@@ -96,6 +97,9 @@ To access the standalone access:
     }
     ```
 
+**Note:** In this case, it is the search based in the less time. (2 connections and 100 minutes to complete the route between City 1 and City 3)
+
+
 - Less connections between city 1 and city 3: [http://localhost:8081/routes/less-connections?origin=1&destiny=3](http://localhost:8081/routes/less-connections?origin=1&destiny=3)
 
 
@@ -121,6 +125,7 @@ To access the standalone access:
         "totalTime":415
     }
     ```
+**Note:** In this case, it is the search based in the less number of connections. (1 connection, but 415 minutes to complete the route between City 1 and City 3)
 
 
 The api documentation (Swagger): [http://localhost:8081/swagger-ui.html](http://localhost:8081/swagger-ui.html)
