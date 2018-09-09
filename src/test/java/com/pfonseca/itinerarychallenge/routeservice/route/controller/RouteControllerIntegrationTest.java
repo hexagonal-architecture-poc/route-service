@@ -22,8 +22,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.pfonseca.itinerarychallenge.routeservice.route.domain.Route;
 import com.pfonseca.itinerarychallenge.routeservice.route.service.ItineraryClientBuilder;
 import com.pfonseca.itinerarychallenge.routeservice.route.service.RouteService;
-import com.pfonseca.itinerarychallenge.routeservice.route.service.strategy.ConnectionSortStrategy;
-import com.pfonseca.itinerarychallenge.routeservice.route.service.strategy.TimeSortStrategy;
+import com.pfonseca.itinerarychallenge.routeservice.route.service.strategy.impl.ConnectionSortStrategy;
+import com.pfonseca.itinerarychallenge.routeservice.route.service.strategy.impl.TimeSortStrategy;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(RouteController.class)

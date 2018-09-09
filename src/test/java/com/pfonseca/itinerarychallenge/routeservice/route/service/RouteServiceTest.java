@@ -16,7 +16,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 import com.pfonseca.itinerarychallenge.routeservice.client.itinerary.ItineraryClientService;
 import com.pfonseca.itinerarychallenge.routeservice.route.controller.filter.RouteFilter;
 import com.pfonseca.itinerarychallenge.routeservice.route.domain.Route;
-import com.pfonseca.itinerarychallenge.routeservice.route.service.strategy.ConnectionSortStrategy;
+import com.pfonseca.itinerarychallenge.routeservice.route.service.exception.OriginAndDestinyAreEqualsException;
+import com.pfonseca.itinerarychallenge.routeservice.route.service.strategy.impl.ConnectionSortStrategy;
+import com.pfonseca.itinerarychallenge.routeservice.route.service.strategy.impl.TimeSortStrategy;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RouteServiceTest {
@@ -39,6 +41,12 @@ public class RouteServiceTest {
 		Mockito.when(this.itineraryClientService.getItinerariesFromOrigin(Mockito.anyLong(), Mockito.any())).thenReturn(new ArrayList<>());
 		
 		Route route = this.routeService.searchRoute(new RouteFilter(1L, 2L), new ConnectionSortStrategy());
+		Assert.assertNull(route);
+	}
+	
+	@Test(expected = OriginAndDestinyAreEqualsException.class)
+	public void givenAValidSearchFilter_whenSearchForARouteWithSameCity_thenThrowOriginAndDestinyAreEqualsException() {
+		Route route = this.routeService.searchRoute(new RouteFilter(1L, 1L), new ConnectionSortStrategy());
 		Assert.assertNull(route);
 	}
 	
@@ -119,7 +127,7 @@ public class RouteServiceTest {
 		.thenReturn(new ItineraryClientBuilder(citiesFirstCall).build())
 		.thenReturn(new ArrayList<>());
 		
-		Route route = this.routeService.searchRoute(new RouteFilter(1L, 2L), new ConnectionSortStrategy());
+		Route route = this.routeService.searchRoute(new RouteFilter(1L, 2L), new TimeSortStrategy());
 		Assert.assertNotNull(route);
 		Assert.assertEquals(1, route.getItineraries().size());
 		Assert.assertTrue(route.isCompleted());

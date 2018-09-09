@@ -11,9 +11,9 @@ import com.pfonseca.itinerarychallenge.routeservice.route.controller.exception.R
 import com.pfonseca.itinerarychallenge.routeservice.route.controller.filter.RouteFilter;
 import com.pfonseca.itinerarychallenge.routeservice.route.domain.Route;
 import com.pfonseca.itinerarychallenge.routeservice.route.service.RouteService;
-import com.pfonseca.itinerarychallenge.routeservice.route.service.strategy.ConnectionSortStrategy;
 import com.pfonseca.itinerarychallenge.routeservice.route.service.strategy.SortStrategy;
-import com.pfonseca.itinerarychallenge.routeservice.route.service.strategy.TimeSortStrategy;
+import com.pfonseca.itinerarychallenge.routeservice.route.service.strategy.impl.ConnectionSortStrategy;
+import com.pfonseca.itinerarychallenge.routeservice.route.service.strategy.impl.TimeSortStrategy;
 
 import io.swagger.annotations.ApiOperation;
 

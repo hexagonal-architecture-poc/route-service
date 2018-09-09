@@ -2,6 +2,9 @@
 
 This microservice is responsible for creating routes based on an origin city and a destiny city. To find the possible route it is necessary to search itineraries on itinerary-service.
 
+To solve this problem, it was used an algorithm called 'Branch and bound'. This algorithm explores branches of the tree of routes, finding the candidate solutions and discarded if it cannot produce a better solution. This algorithm is used to solve NP-hard optimization problems.
+
+
 [Pipeline](https://gitlab.com/itinerary-challenge/route-service/pipelines)
 
 [Docker Registry](https://gitlab.com/itinerary-challenge/route-service/container_registry)
