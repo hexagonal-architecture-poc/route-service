@@ -89,7 +89,7 @@ public class Route {
 
 	@Override
 	public String toString() {
-		return "Route [originId=" + originId + ", destinyId=" + destinyId + ", itineraries=" + itineraries.toArray()
+		return "Route [originId=" + originId + ", destinyId=" + destinyId + ", itineraries=" + itineraries
 				+ ", invalid=" + invalid + "]";
 	}
 
