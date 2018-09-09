@@ -15,6 +15,8 @@ import com.pfonseca.itinerarychallenge.routeservice.route.service.strategy.SortS
 import com.pfonseca.itinerarychallenge.routeservice.route.service.strategy.impl.ConnectionSortStrategy;
 import com.pfonseca.itinerarychallenge.routeservice.route.service.strategy.impl.TimeSortStrategy;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
@@ -26,12 +28,20 @@ public class RouteController {
 	
 	@GetMapping("/less-time")
 	@ApiOperation(value="Find a route based in the less time")
+	@ApiImplicitParams({
+	    @ApiImplicitParam(name = "destiny", value = "Destiny city id", required = true, dataType = "long", paramType = "destiny"),
+	    @ApiImplicitParam(name = "origin", value = "Origin city id", required = true, dataType = "long", paramType = "origin")
+	})
 	public Route lessTime(@Valid RouteFilter filter){
 		return findRoute(filter, new TimeSortStrategy());
 	}
 	
 	@GetMapping("/less-connections")
 	@ApiOperation(value="Find a route based in the less number of connections")
+	@ApiImplicitParams({
+	    @ApiImplicitParam(name = "destiny", value = "Destiny city id", required = true, dataType = "long", paramType = "destiny"),
+	    @ApiImplicitParam(name = "origin", value = "Origin city id", required = true, dataType = "long", paramType = "origin")
+	})
 	public Route lessConnections(@Valid RouteFilter filter){
 		return findRoute(filter, new ConnectionSortStrategy());
 	}
