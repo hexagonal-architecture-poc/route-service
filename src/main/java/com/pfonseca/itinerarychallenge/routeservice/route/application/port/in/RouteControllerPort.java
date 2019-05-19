@@ -1,6 +1,6 @@
 package com.pfonseca.itinerarychallenge.routeservice.route.application.port.in;
 
-import com.pfonseca.itinerarychallenge.routeservice.route.application.domain.Route;
+import com.pfonseca.itinerarychallenge.routeservice.route.domain.Route;
 import com.pfonseca.itinerarychallenge.routeservice.route.application.filter.RouteFilter;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

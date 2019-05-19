@@ -11,7 +11,7 @@ import com.pfonseca.itinerarychallenge.routeservice.route.adapter.client.itinera
 import com.pfonseca.itinerarychallenge.routeservice.route.adapter.client.itinerary.domain.ItineraryPage;
 
 @Service
-public class ItineraryClientService implements FindItineraryPort {
+public class ItineraryClientAdapter implements FindItineraryPort {
 
 	@Autowired
 	private ItineraryClient itineraryClient;

@@ -1,4 +1,4 @@
-package com.pfonseca.itinerarychallenge.routeservice.route.application.domain;
+package com.pfonseca.itinerarychallenge.routeservice.route.domain;
 
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;

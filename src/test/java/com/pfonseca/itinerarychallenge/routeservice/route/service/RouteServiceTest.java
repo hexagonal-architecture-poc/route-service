@@ -17,12 +17,10 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.pfonseca.itinerarychallenge.routeservice.route.application.filter.RouteFilter;
-import com.pfonseca.itinerarychallenge.routeservice.route.application.domain.Route;
+import com.pfonseca.itinerarychallenge.routeservice.route.domain.Route;
 import com.pfonseca.itinerarychallenge.routeservice.route.application.service.exception.OriginAndDestinyAreEqualsException;
 import com.pfonseca.itinerarychallenge.routeservice.route.application.service.strategy.impl.ConnectionSortStrategy;
 import com.pfonseca.itinerarychallenge.routeservice.route.application.service.strategy.impl.TimeSortStrategy;
-
-import javax.swing.text.html.Option;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RouteServiceTest {

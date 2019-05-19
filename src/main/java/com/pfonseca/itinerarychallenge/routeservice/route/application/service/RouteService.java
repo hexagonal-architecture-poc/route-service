@@ -5,7 +5,7 @@ import com.pfonseca.itinerarychallenge.routeservice.route.adapter.client.itinera
 import com.pfonseca.itinerarychallenge.routeservice.route.application.filter.RouteFilter;
 import com.pfonseca.itinerarychallenge.routeservice.route.application.port.in.RouteUseCase;
 import com.pfonseca.itinerarychallenge.routeservice.route.application.port.out.FindItineraryPort;
-import com.pfonseca.itinerarychallenge.routeservice.route.application.domain.Route;
+import com.pfonseca.itinerarychallenge.routeservice.route.domain.Route;
 import com.pfonseca.itinerarychallenge.routeservice.route.application.service.exception.OriginAndDestinyAreEqualsException;
 import com.pfonseca.itinerarychallenge.routeservice.route.application.service.strategy.SortStrategy;
 import org.apache.commons.collections4.CollectionUtils;
@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;

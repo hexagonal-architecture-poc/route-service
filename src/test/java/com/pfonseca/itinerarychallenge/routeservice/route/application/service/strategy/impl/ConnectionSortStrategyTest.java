@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.pfonseca.itinerarychallenge.routeservice.route.adapter.client.itinerary.domain.Itinerary;
-import com.pfonseca.itinerarychallenge.routeservice.route.application.domain.Route;
+import com.pfonseca.itinerarychallenge.routeservice.route.domain.Route;
 
 public class ConnectionSortStrategyTest {
 

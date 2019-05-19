@@ -2,7 +2,6 @@ package com.pfonseca.itinerarychallenge.routeservice.route.domain;
 
 import java.time.LocalTime;
 
-import com.pfonseca.itinerarychallenge.routeservice.route.application.domain.Route;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

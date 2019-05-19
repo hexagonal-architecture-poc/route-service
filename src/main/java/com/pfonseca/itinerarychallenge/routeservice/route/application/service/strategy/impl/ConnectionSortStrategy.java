@@ -1,6 +1,6 @@
 package com.pfonseca.itinerarychallenge.routeservice.route.application.service.strategy.impl;
 
-import com.pfonseca.itinerarychallenge.routeservice.route.application.domain.Route;
+import com.pfonseca.itinerarychallenge.routeservice.route.domain.Route;
 import com.pfonseca.itinerarychallenge.routeservice.route.application.service.strategy.SortStrategy;
 
 public class ConnectionSortStrategy implements SortStrategy{
