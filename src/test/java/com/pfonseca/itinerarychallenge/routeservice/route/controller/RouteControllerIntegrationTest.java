@@ -9,6 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.HashMap;
 import java.util.Map;
 
+import com.pfonseca.itinerarychallenge.routeservice.route.application.port.in.RouteUseCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -21,7 +22,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.pfonseca.itinerarychallenge.routeservice.route.application.domain.Route;
 import com.pfonseca.itinerarychallenge.routeservice.route.service.ItineraryClientBuilder;
-import com.pfonseca.itinerarychallenge.routeservice.route.application.service.RouteService;
 import com.pfonseca.itinerarychallenge.routeservice.route.application.service.strategy.impl.ConnectionSortStrategy;
 import com.pfonseca.itinerarychallenge.routeservice.route.application.service.strategy.impl.TimeSortStrategy;
 
@@ -33,12 +33,12 @@ public class RouteControllerIntegrationTest {
     private MockMvc mvc;
 	
 	@MockBean
-    private RouteService routeService;
+    private RouteUseCase routeUseCase;
 	
 	@Test
 	public void givenSearchingRoute_whenNoRouteWasFound_thenReturnNotFoundException404() throws Exception {
 	     
-	    Mockito.when(routeService.searchRoute(Mockito.any(), Mockito.any())).thenReturn(null);
+	    Mockito.when(routeUseCase.searchRoute(Mockito.any(), Mockito.any())).thenReturn(null);
 	 
 	    mvc.perform(get("/routes/less-time?origin=1&destiny=5")
 	      .contentType(MediaType.APPLICATION_JSON))
@@ -54,14 +54,14 @@ public class RouteControllerIntegrationTest {
 		cityIds.put(1L, new Long[]{2L});
 		route.addItinerary(new ItineraryClientBuilder(cityIds).build().get(0));
 		
-		Mockito.when(routeService.searchRoute(Mockito.any(), Mockito.any())).thenReturn(route);
+		Mockito.when(routeUseCase.searchRoute(Mockito.any(), Mockito.any())).thenReturn(route);
 		
 		mvc.perform(get("/routes/less-time?origin=1&destiny=5")
 				.contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
 		.andExpect(jsonPath("$.itineraries", hasSize(equalTo(1))));
 		
-		Mockito.verify(routeService).searchRoute(Mockito.any(), Mockito.any(TimeSortStrategy.class));
+		Mockito.verify(routeUseCase).searchRoute(Mockito.any(), Mockito.any(TimeSortStrategy.class));
 	}
 	
 	@Test
@@ -73,14 +73,14 @@ public class RouteControllerIntegrationTest {
 		cityIds.put(1L, new Long[]{2L});
 		route.addItinerary(new ItineraryClientBuilder(cityIds).build().get(0));
 		
-		Mockito.when(routeService.searchRoute(Mockito.any(), Mockito.any())).thenReturn(route);
+		Mockito.when(routeUseCase.searchRoute(Mockito.any(), Mockito.any())).thenReturn(route);
 		
 		mvc.perform(get("/routes/less-connections?origin=1&destiny=5")
 				.contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk())
 		.andExpect(jsonPath("$.itineraries", hasSize(equalTo(1))));
 		
-		Mockito.verify(routeService).searchRoute(Mockito.any(), Mockito.any(ConnectionSortStrategy.class));
+		Mockito.verify(routeUseCase).searchRoute(Mockito.any(), Mockito.any(ConnectionSortStrategy.class));
 	}
 	
 }
