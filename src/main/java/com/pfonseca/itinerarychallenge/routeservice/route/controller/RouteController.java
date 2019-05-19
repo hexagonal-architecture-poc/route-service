@@ -26,13 +26,9 @@ public class RouteController implements RouteControllerPort {
 	}
 	
 	private Route findRoute(RouteFilter filter, SortStrategy strategy) {
-		Route route = routeUseCase.searchRoute(filter, strategy);
-		
-		if(route == null) {
-			throw new RouteNotFoundException();
-		}
-		
-		return route;
+		return routeUseCase
+				.searchRoute(filter, strategy)
+				.orElseThrow(() -> new RouteNotFoundException());
 	}
 	
 }

@@ -14,9 +14,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RouteService implements RouteUseCase {
@@ -26,7 +28,7 @@ public class RouteService implements RouteUseCase {
 	@Autowired
 	private FindItineraryPort findItineraryPort;
 	
-	public Route searchRoute(RouteFilter filter, SortStrategy strategy) {
+	public Optional<Route> searchRoute(RouteFilter filter, SortStrategy strategy) {
 		
 		LOGGER.info("finding the itineraries");
 		LOGGER.info("Origin: {}", filter.getOrigin());
@@ -56,7 +58,7 @@ public class RouteService implements RouteUseCase {
 			
 		}
 		
-		return possibleRoutes.stream().findFirst().orElse(null);
+		return possibleRoutes.stream().findFirst();
 	}
 
 	private void removeInvalidRoutes(List<Route> possibleRoutes) {

@@ -3,6 +3,7 @@ package com.pfonseca.itinerarychallenge.routeservice.route.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import com.pfonseca.itinerarychallenge.routeservice.route.application.port.out.FindItineraryPort;
 import com.pfonseca.itinerarychallenge.routeservice.route.application.service.RouteService;
@@ -20,6 +21,8 @@ import com.pfonseca.itinerarychallenge.routeservice.route.application.domain.Rou
 import com.pfonseca.itinerarychallenge.routeservice.route.application.service.exception.OriginAndDestinyAreEqualsException;
 import com.pfonseca.itinerarychallenge.routeservice.route.application.service.strategy.impl.ConnectionSortStrategy;
 import com.pfonseca.itinerarychallenge.routeservice.route.application.service.strategy.impl.TimeSortStrategy;
+
+import javax.swing.text.html.Option;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RouteServiceTest {
@@ -41,14 +44,14 @@ public class RouteServiceTest {
 		
 		Mockito.when(this.findItineraryPort.getItinerariesFromOrigin(Mockito.anyLong(), Mockito.any())).thenReturn(new ArrayList<>());
 		
-		Route route = this.routeService.searchRoute(new RouteFilter(1L, 2L), new ConnectionSortStrategy());
-		Assert.assertNull(route);
+		Optional<Route> route = this.routeService.searchRoute(new RouteFilter(1L, 2L), new ConnectionSortStrategy());
+		Assert.assertFalse(route.isPresent());
 	}
 	
 	@Test(expected = OriginAndDestinyAreEqualsException.class)
 	public void givenAValidSearchFilter_whenSearchForARouteWithSameCity_thenThrowOriginAndDestinyAreEqualsException() {
-		Route route = this.routeService.searchRoute(new RouteFilter(1L, 1L), new ConnectionSortStrategy());
-		Assert.assertNull(route);
+		Optional<Route> route = this.routeService.searchRoute(new RouteFilter(1L, 1L), new ConnectionSortStrategy());
+		Assert.assertFalse(route.isPresent());
 	}
 	
 	@Test
@@ -58,10 +61,10 @@ public class RouteServiceTest {
 		
 		Mockito.when(this.findItineraryPort.getItinerariesFromOrigin(Mockito.anyLong(), Mockito.any())).thenReturn(new ItineraryClientBuilder(cities).build());
 		
-		Route route = this.routeService.searchRoute(new RouteFilter(1L, 2L), new ConnectionSortStrategy());
-		Assert.assertNotNull(route);
-		Assert.assertEquals(1, route.getItineraries().size());
-		Assert.assertTrue(route.isCompleted());
+		Optional<Route> route = this.routeService.searchRoute(new RouteFilter(1L, 2L), new ConnectionSortStrategy());
+		Assert.assertTrue(route.isPresent());
+		Assert.assertEquals(1, route.get().getItineraries().size());
+		Assert.assertTrue(route.get().isCompleted());
 	}
 	
 	@Test
@@ -76,10 +79,10 @@ public class RouteServiceTest {
 			.thenReturn(new ItineraryClientBuilder(citiesFirstCall).build())
 			.thenReturn(new ItineraryClientBuilder(citiesSecondCall).build());
 		
-		Route route = this.routeService.searchRoute(new RouteFilter(1L, 3L), new ConnectionSortStrategy());
-		Assert.assertNotNull(route);
-		Assert.assertEquals(2, route.getItineraries().size());
-		Assert.assertTrue(route.isCompleted());
+		Optional<Route> route = this.routeService.searchRoute(new RouteFilter(1L, 3L), new ConnectionSortStrategy());
+		Assert.assertTrue(route.isPresent());
+		Assert.assertEquals(2, route.get().getItineraries().size());
+		Assert.assertTrue(route.get().isCompleted());
 	}
 	
 	@Test
@@ -99,10 +102,10 @@ public class RouteServiceTest {
 			.thenReturn(new ItineraryClientBuilder(citiesThirdCall).build())
 			.thenReturn(new ArrayList<>());
 		
-		Route route = this.routeService.searchRoute(new RouteFilter(1L, 3L), new ConnectionSortStrategy());
-		Assert.assertNotNull(route);
-		Assert.assertEquals(2, route.getItineraries().size());
-		Assert.assertTrue(route.isCompleted());
+		Optional<Route> route = this.routeService.searchRoute(new RouteFilter(1L, 3L), new ConnectionSortStrategy());
+		Assert.assertTrue(route.isPresent());
+		Assert.assertEquals(2, route.get().getItineraries().size());
+		Assert.assertTrue(route.get().isCompleted());
 	}
 	
 	@Test
@@ -114,8 +117,8 @@ public class RouteServiceTest {
 			.thenReturn(new ItineraryClientBuilder(citiesFirstCall).build())
 			.thenReturn(new ArrayList<>());
 		
-		Route route = this.routeService.searchRoute(new RouteFilter(1L, 3L), new ConnectionSortStrategy());
-		Assert.assertNull(route);
+		Optional<Route> route = this.routeService.searchRoute(new RouteFilter(1L, 3L), new ConnectionSortStrategy());
+		Assert.assertFalse(route.isPresent());
 	}
 	
 	@Test
@@ -128,10 +131,10 @@ public class RouteServiceTest {
 		.thenReturn(new ItineraryClientBuilder(citiesFirstCall).build())
 		.thenReturn(new ArrayList<>());
 		
-		Route route = this.routeService.searchRoute(new RouteFilter(1L, 2L), new TimeSortStrategy());
-		Assert.assertNotNull(route);
-		Assert.assertEquals(1, route.getItineraries().size());
-		Assert.assertTrue(route.isCompleted());
+		Optional<Route> route = this.routeService.searchRoute(new RouteFilter(1L, 2L), new TimeSortStrategy());
+		Assert.assertTrue(route.isPresent());
+		Assert.assertEquals(1, route.get().getItineraries().size());
+		Assert.assertTrue(route.get().isCompleted());
 	}
 	
 	

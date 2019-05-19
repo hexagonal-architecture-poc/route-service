@@ -4,6 +4,8 @@ import com.pfonseca.itinerarychallenge.routeservice.route.application.domain.Rou
 import com.pfonseca.itinerarychallenge.routeservice.route.application.filter.RouteFilter;
 import com.pfonseca.itinerarychallenge.routeservice.route.application.service.strategy.SortStrategy;
 
+import java.util.Optional;
+
 public interface RouteUseCase {
-    Route searchRoute(RouteFilter filter, SortStrategy strategy);
+    Optional<Route> searchRoute(RouteFilter filter, SortStrategy strategy);
 }
