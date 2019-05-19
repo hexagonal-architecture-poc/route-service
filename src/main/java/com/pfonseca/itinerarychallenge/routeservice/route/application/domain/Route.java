@@ -1,4 +1,4 @@
-package com.pfonseca.itinerarychallenge.routeservice.route.domain;
+package com.pfonseca.itinerarychallenge.routeservice.route.application.domain;
 
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
@@ -8,7 +8,7 @@ import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.pfonseca.itinerarychallenge.routeservice.client.itinerary.domain.Itinerary;
+import com.pfonseca.itinerarychallenge.routeservice.route.adapter.client.itinerary.domain.Itinerary;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

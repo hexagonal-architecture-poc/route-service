@@ -1,30 +1,30 @@
-package com.pfonseca.itinerarychallenge.routeservice.route.service;
+package com.pfonseca.itinerarychallenge.routeservice.route.application.service;
 
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-
+import com.google.common.collect.Iterables;
+import com.pfonseca.itinerarychallenge.routeservice.route.adapter.client.itinerary.domain.Itinerary;
+import com.pfonseca.itinerarychallenge.routeservice.route.application.filter.RouteFilter;
+import com.pfonseca.itinerarychallenge.routeservice.route.application.port.in.RouteUseCase;
+import com.pfonseca.itinerarychallenge.routeservice.route.application.port.out.FindItineraryPort;
+import com.pfonseca.itinerarychallenge.routeservice.route.application.domain.Route;
+import com.pfonseca.itinerarychallenge.routeservice.route.application.service.exception.OriginAndDestinyAreEqualsException;
+import com.pfonseca.itinerarychallenge.routeservice.route.application.service.strategy.SortStrategy;
 import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.google.common.collect.Iterables;
-import com.pfonseca.itinerarychallenge.routeservice.client.itinerary.ItineraryClientService;
-import com.pfonseca.itinerarychallenge.routeservice.client.itinerary.domain.Itinerary;
-import com.pfonseca.itinerarychallenge.routeservice.route.controller.filter.RouteFilter;
-import com.pfonseca.itinerarychallenge.routeservice.route.domain.Route;
-import com.pfonseca.itinerarychallenge.routeservice.route.service.exception.OriginAndDestinyAreEqualsException;
-import com.pfonseca.itinerarychallenge.routeservice.route.service.strategy.SortStrategy;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
-public class RouteService {
+public class RouteService implements RouteUseCase {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(RouteService.class);
 
 	@Autowired
-	private ItineraryClientService itineraryClientService;
+	private FindItineraryPort findItineraryPort;
 	
 	public Route searchRoute(RouteFilter filter, SortStrategy strategy) {
 		
@@ -34,7 +34,7 @@ public class RouteService {
 		
 		validateFilter(filter);
 		
-		List<Itinerary> itineraries = itineraryClientService.getItinerariesFromOrigin(filter.getOrigin(), LocalTime.MIN);
+		List<Itinerary> itineraries = findItineraryPort.getItinerariesFromOrigin(filter.getOrigin(), LocalTime.MIN);
 		LOGGER.info("count listItineraries: {}", itineraries.size());
 		
 		List<Route> possibleRoutes = new ArrayList<>();
@@ -74,7 +74,7 @@ public class RouteService {
 				Itinerary lastItinerary = Iterables.getLast(route.getItineraries());
 				
 				LOGGER.info("Searching for more ways. Origin point: {} and time: {}", lastItinerary.getDestiny().getId(), lastItinerary.getArrivalTime());
-				List<Itinerary> newItineraries = itineraryClientService.getItinerariesFromOrigin(
+				List<Itinerary> newItineraries = findItineraryPort.getItinerariesFromOrigin(
 						lastItinerary.getDestiny().getId(), 
 						lastItinerary.getArrivalTime()
 				);

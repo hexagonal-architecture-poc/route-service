@@ -1,11 +1,11 @@
-package com.pfonseca.itinerarychallenge.routeservice.route.service.strategy.impl;
+package com.pfonseca.itinerarychallenge.routeservice.route.application.service.strategy.impl;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.pfonseca.itinerarychallenge.routeservice.client.itinerary.domain.Itinerary;
-import com.pfonseca.itinerarychallenge.routeservice.route.domain.Route;
+import com.pfonseca.itinerarychallenge.routeservice.route.adapter.client.itinerary.domain.Itinerary;
+import com.pfonseca.itinerarychallenge.routeservice.route.application.domain.Route;
 
 public class ConnectionSortStrategyTest {
 

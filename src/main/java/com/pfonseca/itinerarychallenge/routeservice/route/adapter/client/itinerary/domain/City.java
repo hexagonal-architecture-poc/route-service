@@ -1,4 +1,4 @@
-package com.pfonseca.itinerarychallenge.routeservice.client.itinerary.domain;
+package com.pfonseca.itinerarychallenge.routeservice.route.adapter.client.itinerary.domain;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

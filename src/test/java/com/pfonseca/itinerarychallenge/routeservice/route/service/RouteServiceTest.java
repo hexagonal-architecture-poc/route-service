@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.pfonseca.itinerarychallenge.routeservice.route.application.port.out.FindItineraryPort;
+import com.pfonseca.itinerarychallenge.routeservice.route.application.service.RouteService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,12 +15,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.pfonseca.itinerarychallenge.routeservice.client.itinerary.ItineraryClientService;
-import com.pfonseca.itinerarychallenge.routeservice.route.controller.filter.RouteFilter;
-import com.pfonseca.itinerarychallenge.routeservice.route.domain.Route;
-import com.pfonseca.itinerarychallenge.routeservice.route.service.exception.OriginAndDestinyAreEqualsException;
-import com.pfonseca.itinerarychallenge.routeservice.route.service.strategy.impl.ConnectionSortStrategy;
-import com.pfonseca.itinerarychallenge.routeservice.route.service.strategy.impl.TimeSortStrategy;
+import com.pfonseca.itinerarychallenge.routeservice.route.application.filter.RouteFilter;
+import com.pfonseca.itinerarychallenge.routeservice.route.application.domain.Route;
+import com.pfonseca.itinerarychallenge.routeservice.route.application.service.exception.OriginAndDestinyAreEqualsException;
+import com.pfonseca.itinerarychallenge.routeservice.route.application.service.strategy.impl.ConnectionSortStrategy;
+import com.pfonseca.itinerarychallenge.routeservice.route.application.service.strategy.impl.TimeSortStrategy;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RouteServiceTest {
@@ -27,7 +28,7 @@ public class RouteServiceTest {
 	private RouteService routeService;
 	
 	@Mock
-	private ItineraryClientService itineraryClientService;
+	private FindItineraryPort findItineraryPort;
 	
 	@Before
 	public void setup() {
@@ -38,7 +39,7 @@ public class RouteServiceTest {
 	@Test
 	public void givenAnInvalidSearchFilter_whenSearchForARoute_thenReturnNull() {
 		
-		Mockito.when(this.itineraryClientService.getItinerariesFromOrigin(Mockito.anyLong(), Mockito.any())).thenReturn(new ArrayList<>());
+		Mockito.when(this.findItineraryPort.getItinerariesFromOrigin(Mockito.anyLong(), Mockito.any())).thenReturn(new ArrayList<>());
 		
 		Route route = this.routeService.searchRoute(new RouteFilter(1L, 2L), new ConnectionSortStrategy());
 		Assert.assertNull(route);
@@ -55,7 +56,7 @@ public class RouteServiceTest {
 		Map<Long, Long[]> cities = new HashMap<>();
 		cities.put(1L, new Long[]{2L});
 		
-		Mockito.when(this.itineraryClientService.getItinerariesFromOrigin(Mockito.anyLong(), Mockito.any())).thenReturn(new ItineraryClientBuilder(cities).build());
+		Mockito.when(this.findItineraryPort.getItinerariesFromOrigin(Mockito.anyLong(), Mockito.any())).thenReturn(new ItineraryClientBuilder(cities).build());
 		
 		Route route = this.routeService.searchRoute(new RouteFilter(1L, 2L), new ConnectionSortStrategy());
 		Assert.assertNotNull(route);
@@ -71,7 +72,7 @@ public class RouteServiceTest {
 		Map<Long, Long[]> citiesSecondCall = new HashMap<>();
 		citiesSecondCall.put(2L, new Long[]{3L});
 		
-		Mockito.when(this.itineraryClientService.getItinerariesFromOrigin(Mockito.anyLong(), Mockito.any()))
+		Mockito.when(this.findItineraryPort.getItinerariesFromOrigin(Mockito.anyLong(), Mockito.any()))
 			.thenReturn(new ItineraryClientBuilder(citiesFirstCall).build())
 			.thenReturn(new ItineraryClientBuilder(citiesSecondCall).build());
 		
@@ -92,7 +93,7 @@ public class RouteServiceTest {
 		Map<Long, Long[]> citiesThirdCall = new HashMap<>();
 		citiesThirdCall.put(4L, new Long[]{5L});
 		
-		Mockito.when(this.itineraryClientService.getItinerariesFromOrigin(Mockito.anyLong(), Mockito.any()))
+		Mockito.when(this.findItineraryPort.getItinerariesFromOrigin(Mockito.anyLong(), Mockito.any()))
 			.thenReturn(new ItineraryClientBuilder(citiesFirstCall).build())
 			.thenReturn(new ItineraryClientBuilder(citiesSecondCall).build())
 			.thenReturn(new ItineraryClientBuilder(citiesThirdCall).build())
@@ -109,7 +110,7 @@ public class RouteServiceTest {
 		Map<Long, Long[]> citiesFirstCall = new HashMap<>();
 		citiesFirstCall.put(1L, new Long[]{2L});
 		
-		Mockito.when(this.itineraryClientService.getItinerariesFromOrigin(Mockito.anyLong(), Mockito.any()))
+		Mockito.when(this.findItineraryPort.getItinerariesFromOrigin(Mockito.anyLong(), Mockito.any()))
 			.thenReturn(new ItineraryClientBuilder(citiesFirstCall).build())
 			.thenReturn(new ArrayList<>());
 		
@@ -123,7 +124,7 @@ public class RouteServiceTest {
 		Map<Long, Long[]> citiesFirstCall = new HashMap<>();
 		citiesFirstCall.put(1L, new Long[]{2L, 2L});
 		
-		Mockito.when(this.itineraryClientService.getItinerariesFromOrigin(Mockito.anyLong(), Mockito.any()))
+		Mockito.when(this.findItineraryPort.getItinerariesFromOrigin(Mockito.anyLong(), Mockito.any()))
 		.thenReturn(new ItineraryClientBuilder(citiesFirstCall).build())
 		.thenReturn(new ArrayList<>());
 		

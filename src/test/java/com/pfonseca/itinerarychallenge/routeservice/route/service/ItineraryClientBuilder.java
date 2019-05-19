@@ -8,8 +8,8 @@ import java.util.Map;
 
 import org.springframework.util.Assert;
 
-import com.pfonseca.itinerarychallenge.routeservice.client.itinerary.domain.City;
-import com.pfonseca.itinerarychallenge.routeservice.client.itinerary.domain.Itinerary;
+import com.pfonseca.itinerarychallenge.routeservice.route.adapter.client.itinerary.domain.City;
+import com.pfonseca.itinerarychallenge.routeservice.route.adapter.client.itinerary.domain.Itinerary;
 
 public class ItineraryClientBuilder {
 

@@ -1,4 +1,4 @@
-package com.pfonseca.itinerarychallenge.routeservice.route.controller.filter;
+package com.pfonseca.itinerarychallenge.routeservice.route.application.filter;
 
 import javax.validation.constraints.NotNull;
 
@@ -32,5 +32,5 @@ public class RouteFilter {
 	public void setDestiny(Long destiny) {
 		this.destiny = destiny;
 	}
-	
+
 }
