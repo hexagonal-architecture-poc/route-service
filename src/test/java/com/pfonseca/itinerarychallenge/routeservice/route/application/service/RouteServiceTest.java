@@ -1,4 +1,4 @@
-package com.pfonseca.itinerarychallenge.routeservice.route.service;
+package com.pfonseca.itinerarychallenge.routeservice.route.application.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;

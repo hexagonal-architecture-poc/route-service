@@ -22,7 +22,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.pfonseca.itinerarychallenge.routeservice.route.domain.Route;
-import com.pfonseca.itinerarychallenge.routeservice.route.service.ItineraryClientBuilder;
+import com.pfonseca.itinerarychallenge.routeservice.route.application.service.ItineraryClientBuilder;
 import com.pfonseca.itinerarychallenge.routeservice.route.application.service.strategy.impl.ConnectionSortStrategy;
 import com.pfonseca.itinerarychallenge.routeservice.route.application.service.strategy.impl.TimeSortStrategy;
 
