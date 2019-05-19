@@ -13,7 +13,7 @@ import com.pfonseca.itinerarychallenge.routeservice.route.adapter.client.itinera
 
 public class ItineraryClientBuilder {
 
-	private Map<Long, Long[]> cityIds;
+	private final Map<Long, Long[]> cityIds;
 	
 	public ItineraryClientBuilder(Map<Long, Long[]> cityIds) {
 		Assert.notNull(cityIds, "not null cities");

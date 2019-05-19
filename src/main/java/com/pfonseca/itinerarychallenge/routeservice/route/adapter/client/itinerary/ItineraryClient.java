@@ -10,7 +10,7 @@ import com.pfonseca.itinerarychallenge.routeservice.route.adapter.client.itinera
 public interface ItineraryClient {
 
 	@GetMapping(value = "/?origin={origin}&departureAfter={departureAfter}")
-	public ItineraryPage listItineraries(@PathVariable("origin") long origin, @PathVariable("departureAfter") String departureAfter);
+	ItineraryPage listItineraries(@PathVariable("origin") long origin, @PathVariable("departureAfter") String departureAfter);
 
 	
 }

@@ -18,8 +18,7 @@ public class ItineraryClientAdapter implements FindItineraryPort {
 	
 	public List<Itinerary> getItinerariesFromOrigin(Long origin, LocalTime departureAfter) {
 		ItineraryPage listItineraries = itineraryClient.listItineraries(origin, departureAfter.toString());
-		List<Itinerary> itineraries = listItineraries.getContent();
-		return itineraries;
+		return listItineraries.getContent();
 	}
 	
 }

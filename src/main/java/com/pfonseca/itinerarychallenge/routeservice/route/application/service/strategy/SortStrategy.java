@@ -9,7 +9,7 @@ public interface SortStrategy {
 	 * @param routeToCompare A possible route
 	 * @return Return true if the completedRoute is better than the routeToCompare
 	 */
-	
-	public boolean compareCompletedRoute(Route completedRoute, Route routeToCompare);
+
+    boolean compareCompletedRoute(Route completedRoute, Route routeToCompare);
 	
 }

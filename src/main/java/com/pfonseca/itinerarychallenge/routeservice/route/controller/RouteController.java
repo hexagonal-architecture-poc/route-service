@@ -28,7 +28,7 @@ public class RouteController implements RouteControllerPort {
 	private Route findRoute(RouteFilter filter, SortStrategy strategy) {
 		return routeUseCase
 				.searchRoute(filter, strategy)
-				.orElseThrow(() -> new RouteNotFoundException());
+				.orElseThrow(RouteNotFoundException::new);
 	}
 	
 }

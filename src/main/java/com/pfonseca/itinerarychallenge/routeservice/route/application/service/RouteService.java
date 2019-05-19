@@ -61,7 +61,7 @@ public class RouteService implements RouteUseCase {
 	}
 
 	private void removeInvalidRoutes(List<Route> possibleRoutes) {
-		possibleRoutes.removeIf(route -> route.isInvalid());
+		possibleRoutes.removeIf(Route::isInvalid);
 	}
 
 	private List<Route> findNewRoutes(List<Route> possibleRoutes) {
@@ -123,7 +123,7 @@ public class RouteService implements RouteUseCase {
 	private boolean isFinished(List<Route> possibleRoutes) {
 		
 		if(possibleRoutes.size() > 0)
-			return possibleRoutes.stream().allMatch(route -> route.isCompleted());
+			return possibleRoutes.stream().allMatch(Route::isCompleted);
 		
 		return true;
 		

@@ -111,11 +111,8 @@ public class Route {
 			return false;
 		Route other = (Route) obj;
 		if (itineraries == null) {
-			if (other.itineraries != null)
-				return false;
-		} else if (!itineraries.equals(other.itineraries))
-			return false;
-		return true;
-	}
+            return other.itineraries == null;
+		} else return itineraries.equals(other.itineraries);
+    }
 
 }
